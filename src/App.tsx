@@ -1,9 +1,11 @@
+import Header from './components/Header/Header';
+
 const App = () => {
   
   return (
-    <>
-      <div>My blog</div>
-    </>
+    <div className="container mx-auto">
+      <Header/>
+    </div>
   );
 };
 
