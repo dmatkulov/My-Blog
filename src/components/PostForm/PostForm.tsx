@@ -28,14 +28,12 @@ const PostForm: React.FC = () => {
   
   const onFormSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log('submitted');
     setLoading(true);
     
     try {
       await axiosApi.post('posts.json', newPost);
     } finally {
       navigate('/');
-      console.log('post created');
       setLoading(false);
     }
     

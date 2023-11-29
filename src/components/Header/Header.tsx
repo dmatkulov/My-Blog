@@ -5,7 +5,7 @@ import myBlogLogo from '../../assets/myBlog-logo.svg';
 
 const Header: React.FC = () => {
   return (
-    <header className="flex justify-between bg-amber-100 p-6 rounded-lg mt-3">
+    <header className="flex justify-between bg-black text-white p-6 rounded-lg mt-3">
       <div>
         <NavLink to='/'>
           <img
