@@ -4,7 +4,7 @@ import PostForm from './components/PostForm/PostForm';
 import Posts from './components/Post/Posts';
 import Contacts from './containers/Contacts/Contacts';
 import About from './containers/About/About';
-import FullPost from './components/Post/FullPost';
+import FullPost from './containers/FullPost/FullPost';
 
 const App = () => {
   return (
@@ -28,6 +28,9 @@ const App = () => {
         )}/>
         <Route path="/posts/:postId" element={(
           <FullPost/>
+        )}/>
+        <Route path="/posts/:postId/edit" element={(
+          <PostForm/>
         )}/>
       </Routes>
     </div>

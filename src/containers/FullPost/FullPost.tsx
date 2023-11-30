@@ -2,13 +2,13 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Post} from '../../types';
 import axiosApi from '../../axiosApi';
 import {useParams} from 'react-router-dom';
-import FullPostCard from './FullPostCard';
+import FullPostCard from '../../components/Post/FullPostCard';
 
 const FullPost: React.FC = () => {
   const [post, setPost] = useState<Post | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   
-  const params = useParams();
+  const params = useParams() as {postId: string};
   const url = 'posts/' + params.postId + '.json';
   
   const fetchPost = useCallback(async () => {
@@ -18,7 +18,6 @@ const FullPost: React.FC = () => {
       const postData = postResponse.data;
       
       setPost({
-        id: postData.id,
         title: postData.title,
         description: postData.description,
         date: postData.date,
@@ -38,7 +37,9 @@ const FullPost: React.FC = () => {
       {isLoading && (
         <h1>Loading...</h1>
       )}
-      {<FullPostCard post={post}/>}
+      {<FullPostCard
+        id={params.postId}
+        post={post}/>}
     </div>
   );
 };

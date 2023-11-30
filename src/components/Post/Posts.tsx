@@ -14,17 +14,21 @@ const Posts: React.FC = () => {
         'posts.json');
       const fireBaseData = postResponse.data;
       
-      Object.keys(fireBaseData).forEach((key) => {
-        setPosts((prevState) => ({
-          [key]: {
-            id: fireBaseData[key].id,
-            title: fireBaseData[key].title,
-            description: fireBaseData[key].description,
-            date: fireBaseData[key].date,
-          },
-          ...prevState,
-        }));
-      });
+      if (fireBaseData !== null) {
+        Object.keys(fireBaseData).forEach((key) => {
+          setPosts((prevState) => ({
+            [key]: {
+              title: fireBaseData[key].title,
+              description: fireBaseData[key].description,
+              date: fireBaseData[key].date,
+            },
+            ...prevState,
+          }));
+        });
+      } else {
+        setPosts({});
+      }
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
     }
@@ -44,15 +48,17 @@ const Posts: React.FC = () => {
       {isLoading && (
         <h1 className="text-center">Loading...</h1>
       )}
+      {Object.keys(posts).length > 0 && (
       <div className="grid grid-cols-3 gap-3">
-      {Object.keys(posts).map((id) => (
-        <PostCard
-          post={posts[id]}
-          key={posts[id].id}
-          id={id}
-        />
-      ))}
+        {Object.keys(posts).map((id) => (
+            <PostCard
+              post={posts[id]}
+              key={id}
+              id={id}
+            />
+          ))}
       </div>
+        )}
     </div>
   );
 };
