@@ -57,7 +57,6 @@ const PostForm: React.FC = () => {
       navigate('/');
       setLoading(false);
     }
-    
   };
   
   let title = 'Add new article';
