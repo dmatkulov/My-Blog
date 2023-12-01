@@ -27,7 +27,6 @@ const FullPost: React.FC = () => {
     }
   }, [url]);
   
-  
   useEffect(() => {
     void fetchPost();
   }, [fetchPost]);

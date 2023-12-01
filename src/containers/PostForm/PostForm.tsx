@@ -2,6 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Post} from '../../types';
 import axiosApi from '../../axiosApi';
 import {useNavigate, useParams} from 'react-router-dom';
+import Title from '../../components/Title/Title';
 
 const PostForm: React.FC = () => {
   const navigate = useNavigate();
@@ -67,11 +68,7 @@ const PostForm: React.FC = () => {
   
   return (
     <div>
-      <div className="text-center mt-10">
-        <h1 className="font-bold text-3xl text-orange-500 border-b pb-5 mb-10">
-          {title}
-        </h1>
-      </div>
+      <Title title={title}/>
       <div className="flex items-center">
         <form onSubmit={onFormSubmit} className="inline-block p-4 bg-white rounded mx-auto">
           <div>

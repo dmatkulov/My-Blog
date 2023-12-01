@@ -1,7 +1,7 @@
 import Header from './components/Header/Header';
 import {Route, Routes} from 'react-router-dom';
-import PostForm from './components/PostForm/PostForm';
-import Posts from './components/Post/Posts';
+import PostForm from './containers/PostForm/PostForm';
+import Home from './containers/Home/Home';
 import Contacts from './containers/Contacts/Contacts';
 import About from './containers/About/About';
 import FullPost from './containers/FullPost/FullPost';
@@ -12,10 +12,10 @@ const App = () => {
       <Header/>
       <Routes>
         <Route path="/" element={(
-          <Posts/>
+          <Home/>
         )}/>
         <Route path="/posts" element={(
-          <Posts/>
+          <Home/>
         )}/>
         <Route path="/new-post" element={(
           <PostForm/>
