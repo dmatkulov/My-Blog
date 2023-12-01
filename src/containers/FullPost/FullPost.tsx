@@ -3,6 +3,7 @@ import {Post} from '../../types';
 import axiosApi from '../../axiosApi';
 import {useParams} from 'react-router-dom';
 import FullPostCard from '../../components/Post/FullPostCard';
+import Spinner from "../../components/Spinner/Spinner";
 
 const FullPost: React.FC = () => {
   const [post, setPost] = useState<Post | null>(null);
@@ -34,11 +35,12 @@ const FullPost: React.FC = () => {
   return post && (
     <div>
       {isLoading && (
-        <h1>Loading...</h1>
+        <Spinner/>
       )}
       {<FullPostCard
         id={params.postId}
-        post={post}/>}
+        post={post}
+      />}
     </div>
   );
 };

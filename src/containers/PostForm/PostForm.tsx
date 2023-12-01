@@ -3,6 +3,7 @@ import {Post} from '../../types';
 import axiosApi from '../../axiosApi';
 import {useNavigate, useParams} from 'react-router-dom';
 import Title from '../../components/Title/Title';
+import Spinner from "../../components/Spinner/Spinner";
 
 const PostForm: React.FC = () => {
   const navigate = useNavigate();
@@ -66,42 +67,54 @@ const PostForm: React.FC = () => {
     title = 'Edit article';
   }
   
+  let form = (
+    <form onSubmit={onFormSubmit} className="inline-block p-4 bg-white rounded mx-auto">
+    <div>
+    <label htmlFor="title" className="w-96 text-gray-500">Title</label>
+    <input
+    required
+    id="title"
+    type="text"
+    name="title"
+    className="w-96 font-bold py-1.5 px-2 block border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+    focus:outline-none focus:border-sky-500 mb-4 mt-2"
+    value={post.title}
+    onChange={postChanged}
+    />
+    </div>
+    <div>
+    <label htmlFor="description" className="w-96 text-gray-500">Description</label>
+    <textarea
+    required
+    id="description"
+    name="description"
+    className="w-96 h-52 py-1.5 px-2 block border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+    focus:outline-none focus:border-sky-500 mt-2"
+    value={post.description}
+    onChange={postChanged}
+    />
+    </div>
+    <div>
+    <button className="px-4 py-2 bg-blue-700 text-white rounded-md mt-8 w-full mb-4"
+    disabled={loading}
+    type="submit">Save</button>
+    </div>
+    </form>
+  );
+  
+  if (loading) {
+    form = (
+      <div className="mx-auto">
+        <Spinner/>
+      </div>
+    );
+  }
+  
   return (
     <div>
       <Title title={title}/>
       <div className="flex items-center">
-        <form onSubmit={onFormSubmit} className="inline-block p-4 bg-white rounded mx-auto">
-          <div>
-            <label htmlFor="title" className="w-96 text-gray-500">Title</label>
-            <input
-              required
-              id="title"
-              type="text"
-              name="title"
-              className="w-96 font-bold py-1.5 px-2 block border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
-              focus:outline-none focus:border-sky-500 mb-4 mt-2"
-              value={post.title}
-              onChange={postChanged}
-            />
-          </div>
-          <div>
-            <label htmlFor="description" className="w-96 text-gray-500">Description</label>
-            <textarea
-              required
-              id="description"
-              name="description"
-              className="w-96 h-52 py-1.5 px-2 block border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
-              focus:outline-none focus:border-sky-500 mt-2"
-              value={post.description}
-              onChange={postChanged}
-            />
-          </div>
-          <div>
-            <button className="px-4 py-2 bg-blue-700 text-white rounded-md mt-8 w-full mb-4"
-              disabled={loading}
-              type="submit">Save</button>
-          </div>
-        </form>
+        {form}
       </div>
     </div>
   );
